@@ -27,20 +27,27 @@ if os.path.exists(file_path):
         text = f.read()
         colision_infos = json.loads(text) if text else []
 
+def get_random_512():
+    """
+    Генерирует рандомно 512 бит
+    """
+    return ''.join([str(random.randint(0,1)) for x in range(512)])
 # эталон
-final = ''.join([str(random.randint(0,1)) for x in range(512)]) #генерируем рандомно 512 бит
+final = get_random_512() 
 
 # n - число бит
-cur_n = max([x["needed_check_count"] for x in colision_infos]) if colision_infos else 0
+cur_n = max([x["n"] for x in colision_infos]) if colision_infos else 0
 max_n = 40 #
 gost = Streebog()
 for i in range(cur_n + 1, max_n):
     cur = 0
     final_hash = gost.GetHashByBits(final, i)
     while True:
-        applicant = bin(cur)[2:]
+        # Этот вариант показал, что достаточно медленный
+        #applicant = bin(cur)[2:]
+        applicant = get_random_512()
         # Дополнили нулями, чтобы сравнение final != applicant было корректно
-        applicant = '0'*(512-i) + applicant
+        # applicant = '0'*(512-i) + applicant
         applicant_hash = gost.GetHashByBits(applicant, i)
         # хэши совпали
         if final_hash == applicant_hash and final != applicant:
