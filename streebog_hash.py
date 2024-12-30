@@ -267,9 +267,10 @@ class Streebog:
         return self.GetHash(res, msb)
 
 
-    def GetHash(self, M: List[int], msb: int) -> str:
+    def GetHash(self, M: List[int], msb: int = 256) -> str:
         """
         Основная функция для внешнего вызова
+        msb - число бит
         """
         result = self._GetHash(M, msb)
         return ''.join([hex(x)[2:] for x in result])
