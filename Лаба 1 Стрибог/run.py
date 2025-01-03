@@ -2,6 +2,7 @@ from streebog_hash import *
 import json
 import random
 import os
+os.chdir('./Лаба 1 Стрибог')
 from run_2 import task_2
 
 # message = [
@@ -68,6 +69,6 @@ def task_1():
                 break
             cur += 1 # переходим дальше
 
-# task_1()
+task_1()
 
-task_2()
+#task_2()
