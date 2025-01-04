@@ -9,6 +9,7 @@ from streebog_hash import Streebog
 import json
 import random
 import os
+#os.chdir('./Лаба 1 Стрибог')
 from PIL import Image
 
 gost = Streebog()

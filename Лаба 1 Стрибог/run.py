@@ -69,6 +69,21 @@ def task_1():
                 break
             cur += 1 # переходим дальше
 
-task_1()
+# Первая часть первой лабы - работа с коллизизиями последовательностей бит
+#task_1()
 
+# Вторая часть первой лабы - работа с картинками
 #task_2()
+
+def lab_2_helper():
+    from PIL import Image
+    # Заяц
+    zais_file = "./Task2/Заяц_64.jpg"
+    img_zais = Image.open(zais_file).convert('RGB')
+    bytes_array = [x for x in img_zais.tobytes()]
+    hash = Streebog().GetHash(bytes_array)
+    print(hash)
+
+# Для лабы 2 потребовалось посчитать хэш от исходного сообщения
+lab_2_helper()
+# 5b8c33beef3db4e41a5658a2a6f621de9e7d578b74c3eda16d117dce3e533
